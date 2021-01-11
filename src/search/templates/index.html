@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>yooutube search</title>
+    <link rel="shortcut icon" href="https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200X200.png" type="image/x-icon">
+</head>
+<body>
+    <div class="cover">
+        
+            <!--logo-->
+            <div class="nabar">
+            <div class="logo">
+                <a href="">
+                    YSearch&ThinSpace;<i class="fab fa-youtube"></i>
+                </a>    
+            </div>
+        </div>
+            <!--end logo section-->
+
+            <!--search -->
+            <div class="container__search">
+                <div class="search__cover">
+                    <form action="{% url 'search:youtube_search' %}" method="get">
+                        <input class="search__input" type="search" name="input_search" placeholder="search on youtube">
+                        <p class="note__serach">you can search for any video on youtube</p>
+                        <button class="search__button"><i class="far fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+            <!--cards-->
+            <div class="card__cover">
+            <div class="wepper">
+                {% for obj in obj %}
+                <div class="card">
+                    <img src="{{obj.image}}" alt="" class="image_card">
+                    <div class="card_info">
+                        <div class="card_name">
+                            {{obj.title}}
+                        </div>
+                        
+                    </div>
+                    <div class="card_view_time">
+                        <div class="card_view">
+                            <a href="https://www.youtube.com/watch?v={{obj.id}}" target="_blank">view</a>
+                        </div>
+                        <div class="duration">
+                            {{obj.duration}}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+            <!--end cards-->
+        </div>
+       
+    </div>
+</body>
+</html>
